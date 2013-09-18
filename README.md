@@ -1,0 +1,4 @@
+nifty
+=====
+
+Tiny JS templates
