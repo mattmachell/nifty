@@ -37,7 +37,7 @@
                 else {
                         inject = data[prop];
                     }
-                while(html.indexOf('{{' + parent + prop + '}}')!==-1){    
+                while(html.indexOf('{{' + parent + prop + '}}') !== -1) {
                     html = html.replace('{{' + parent + prop + '}}', inject);
                 }
             }
