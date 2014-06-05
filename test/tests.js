@@ -10,6 +10,13 @@ test("Basic replacement", function(){
    ok(NIFTY.replace(HTML, data)=='a hard test') 
 });
 
+test("Multi replacement", function(){
+   var HTML="{{test}} OR {{test}}",
+       data={test:"a thing"};
+       
+   ok(NIFTY.replace(HTML, data)=='a thing OR a thing') 
+});
+
 test("Basic replacement functions", function(){
    var HTML="{{test}}",
        data={test:function(){return "a new test"}};
