@@ -16,9 +16,13 @@
     };
 
     NIFTY.dom = function (tmpl, data) {
-        var elem = d.createElement('div');
+        var i, elem = d.createElement('div');
         elem.innerHTML = NIFTY.tmpl(tmpl, data);
-        return elem.firstChild;
+        for (i = 0; i < elem.childNodes.length; i++) {
+            if (elem.childNodes[i].nodeType === Node.ELEMENT_NODE) {
+                return elem.childNodes[i];
+            }
+        }
     };
 
     NIFTY.replace = function (html, data, parent) {
@@ -33,11 +37,10 @@
                     }
                 } else if (typeof data[prop] === 'object') {
                     return NIFTY.replace(html, data[prop], prop + '.');
+                } else {
+                    inject = data[prop];
                 }
-                else {
-                        inject = data[prop];
-                    }
-                while(html.indexOf('{{' + parent + prop + '}}') !== -1) {
+                while (html.indexOf('{{' + parent + prop + '}}') !== -1) {
                     html = html.replace('{{' + parent + prop + '}}', inject);
                 }
             }
